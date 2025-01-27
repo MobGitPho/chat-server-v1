@@ -34,6 +34,7 @@ class UserResource extends JsonResource
             'last_logged_in_at' => $this->last_logged_in_at,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            'groups' => GroupResource::collection($this->whenLoaded('groups')),
             'roles' => $this->whenLoaded('roles', function () {
                 return $this->roles()->with('permissions')->get();
             }),

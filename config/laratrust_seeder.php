@@ -15,15 +15,16 @@ return [
 
     'roles_structure' => [
         UserRole::SUPER_ADMIN->value => [
-            'page' => 'p-da,p-ab,p-ac,p-no,p-se,p-rm,p-um',
-            'action' => 'a-du,a-eu,a-au',
+            'page' => 'p-da,p-ab,p-ac,p-no,p-se,p-rm,p-um,p-me',
+            'action' => 'a-du,a-eu,a-au,a-me,d-me,e-me',
         ],
         UserRole::ADMIN->value => [
-            'page' => 'p-da,p-ab,p-ac,p-no,p-se,p-um',
-            'action' => 'a-eu',
+            'page' => 'p-da,p-ab,p-ac,p-no,p-se,p-um,p-me',
+            'action' => 'a-eu,a-me,d-me,e-me',
         ],
         UserRole::USER->value => [
-            'page' => 'p-da,p-ab,p-ac,p-no',
+            'page' => 'p-da,p-ab,p-ac,p-no,p-me',
+            'actiion' => 'a-me,d-me,e-me'
         ],
     ],
 
@@ -35,9 +36,13 @@ return [
         'p-se' => 'settings',
         'p-rm' => 'roles-management',
         'p-um' => 'users-management',
+        'p-me' => 'message',
 
         'a-du' => 'delete-user',
         'a-eu' => 'edit-user',
         'a-au' => 'add-user',
+        'a-me' => 'add-message',
+        'd-me' => 'delete-message',
+        'e-me' => 'edit-message',
     ],
 ];
