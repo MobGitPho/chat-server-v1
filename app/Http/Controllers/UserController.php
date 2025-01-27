@@ -339,4 +339,30 @@ class UserController extends Controller
 
         return $this->sendResponse(null, ResponseStatusCode::NOT_FOUND, 'User not found');
     }
+
+    public function addUserToGroup($userId, $groupId)
+    {
+        $user = User::findOrFail($userId);
+        $group = Group::findOrFail($groupId);
+
+        $user->groups()->attach($groupId);
+
+        return response()->json(['message' => 'Utilisateur ajouté au groupe'], 200);
+    }
+
+    public function removeUserFromGroup($userId, $groupId)
+    {
+        $user = User::findOrFail($userId);
+        $group = Group::findOrFail($groupId);
+
+        $user->groups()->detach($groupId);
+
+        return response()->json(['message' => 'Utilisateur retiré du groupe'], 200);
+    }
+
+    public function getUserGroups($userId)
+    {
+        $user = User::findOrFail($userId);
+        return response()->json($user->groups, 200);
+    }
 }

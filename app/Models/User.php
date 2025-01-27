@@ -182,4 +182,23 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword,
     {
         return $builder->where('profile_type', ProfileType::CUSTOMER->value);
     }
+
+    /**
+     * Summary of group
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function groups()
+    {
+        return $this->belongsToMany(Group::class, 'group_user');
+    }
+
+    public function messagesSent()
+    {
+        return $this->hasMany(Message::class, 'sender_id');
+    }
+
+    public function messagesReceived()
+    {
+        return $this->hasMany(Message::class, 'receiver_id');
+    }
 }
